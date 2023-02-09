@@ -38,6 +38,7 @@ exports.getUser = async (req,res) =>{
 
 exports.handleSignIn = async (req,res) =>{
     try{
+        //we r finding the one record with email id in users collection 
         const getUser = await UserModel.findOne({emailId: req.body.emailId});
         if(!getUser  || getUser.password !== req.body.password){
             throw new Error("Incorrect email or password");

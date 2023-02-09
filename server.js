@@ -21,5 +21,12 @@ app.use("/products",ProductRouter);
 app.use("/users",UserRouter);
 app.use("/orders",OrderRouter);
 app.use("/cart",CartRouter);
+
+app.all('*',(req,res,next)=>{
+    res.status(404).json({
+        status:'failed',
+        message:"Can't find Undefined Url on this server!"
+    })
+})
 app.listen(process.env.PORT,()=>console.log("Server is Running"));
 
