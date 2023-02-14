@@ -21,6 +21,12 @@ app.use("/products",ProductRouter);
 app.use("/users",UserRouter);
 app.use("/orders",OrderRouter);
 app.use("/cart",CartRouter);
+app.get("/",(req,res,next)=>{
+    res.status(200).json({
+        status:"success",
+        message:"Server is up and running"
+    })
+})
 
 app.all('*',(req,res,next)=>{
     res.status(404).json({
