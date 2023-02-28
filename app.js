@@ -11,8 +11,8 @@ dotenv.config();
 app.use(express.json())
 app.use(cors())
 
-app.use("/products",ProductRouter);
 app.use("/users",UserRouter);
+app.use("/products",ProductRouter);
 app.use("/orders",OrderRouter);
 app.use("/cart",CartRouter);
 app.get("/",(req,res,next)=>{
@@ -21,7 +21,4 @@ app.get("/",(req,res,next)=>{
         message:"Server is up and running"
     })
 })
-
-
-
 module.exports = app;

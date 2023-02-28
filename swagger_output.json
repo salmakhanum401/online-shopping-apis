@@ -2,13 +2,37 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "REST API",
-    "description": ""
+    "title": "Shopping cart apis",
+    "description": "We are using Autogen to generate docs."
   },
-  "host": "localhost:3000",
+  "host": "localhost:8000",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "Products",
+      "description": "products endpoints"
+    },
+    {
+      "name": "Orders",
+      "description": "orders endpoints"
+    },
+    {
+      "name": "Cart",
+      "description": "cart endpoints"
+    },
+    {
+      "name": "Users",
+      "description": "users endpoints"
+    }
+  ],
   "schemes": [
     "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
   ],
   "paths": {
     "/": {
@@ -22,13 +46,101 @@
         }
       }
     },
-    "/products/": {
+    "/users/": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "It creates a single user",
+        "parameters": [
+          {
+            "name": "newUser",
+            "in": "body",
+            "description": "details of the user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Users"
+            },
+            "description": "return info of the created user"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
       "get": {
-        "description": "",
-        "parameters": [],
+        "tags": [
+          "Users"
+        ],
+        "description": "Get single user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+          
+        ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "return info of the user",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    },
+    "/users/signIn": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Sign In request",
+        "parameters": [
+          {
+            "name": "emailId",
+            "in": "body",
+            "description": "details of the user",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Users"
+            },
+            "description": "return info of the user"
+          }
+        }
+      }
+    },
+    "/products/": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "description": "Get All products",
+        "responses": {
+          "200": {
+            "description": "return info of the single product",
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -36,11 +148,27 @@
         }
       },
       "post": {
-        "description": "",
-        "parameters": [],
+        "tags": [
+          "Products"
+        ],
+        "description": "It creates a single product",
+        "parameters": [
+          {
+            "name": "newProduct",
+            "in": "body",
+            "description": "details of the product",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Products"
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "return info of the created product"
           },
           "400": {
             "description": "Bad Request"
@@ -50,7 +178,10 @@
     },
     "/products/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Products"
+        ],
+        "description": "Get Single Product",
         "parameters": [
           {
             "name": "id",
@@ -61,85 +192,83 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
+            "schema": {
+              "$ref": "#/definitions/Products"
+            },
+            "description": "return info of the single product"
           }
         }
       }
     },
-    "/users/": {
-      "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/users/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/users/signIn": {
-      "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
     "/orders/": {
       "post": {
-        "description": "",
-        "parameters": [],
+        "tags": [
+          "Orders"
+        ],
+        "description": "It creates a single order",
+        "parameters": [
+          {
+            "name": "createOrders",
+            "in": "body",
+            "description": "order info",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            },
+            "description": "return info of the created Order"
           }
         }
       }
     },
     "/orders/{userId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Orders"
+        ],
+        "description": "Get single user order",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "User id of the order"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
     },
     "/orders/{userId}/{orderId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Orders"
+        ],
+        "description": "Get single user order",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "User id of the order"
           },
           {
             "name": "orderId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Order id of the specific order"
           }
         ],
         "responses": {
@@ -154,12 +283,29 @@
     },
     "/cart/": {
       "post": {
-        "description": "",
-        "parameters": [],
+        "tags": [
+          "Cart"
+        ],
+        "description": "Create cart items",
+        "parameters": [
+          {
+            "name": "newCartItem",
+            "in": "body",
+            "description": "please send productsId and userId",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "required": true
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            },
+            "description": "return info of the created cart item"
           },
+          
           "400": {
             "description": "Bad Request"
           }
@@ -168,68 +314,153 @@
     },
     "/cart/{userId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Cart"
+        ],
+        "description": "all user cart items",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "userId"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           },
+          
           "400": {
             "description": "Bad Request"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Cart"
+        ],
+        "description": "delete all user cart items",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "userId"
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "delete all items in cart"
           }
         }
       }
     },
     "/cart/{userId}/{cartId}": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Cart"
+        ],
+        "description": "delete cart item",
         "parameters": [
           {
             "name": "userId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "userId"
           },
           {
             "name": "cartId",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "cartid"
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "returns null"
           },
           "400": {
             "description": "Bad Request"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Products": {
+      "type": "object",
+      "properties": {
+        "productName": {
+          "type": "string",
+          "example": "Jacket"
+        },
+        "price": {
+          "type": "number",
+          "example": 2999
+        },
+        "rating": {
+          "type": "number",
+          "example": 4
+        }
+      }
+    },
+    "Users": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Salma"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Khanum"
+        },
+        "emailId": {
+          "type": "string",
+          "example": "salmakhanum726@gmail.com"
+        },
+        "gender": {
+          "type": "string",
+          "example": "female"
+        },
+        "address": {
+          "type": "string",
+          "example": "Bangalore"
+        },
+        "phoneNumber": {
+          "type": "number",
+          "example": 9876543218
+        }
+      }
+    },
+    "Orders": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "63be8e89c64829b30d561c07"
+        },
+        "products": {
+          "type": "string",
+          "example": "63be84d0c5db42580f05577d"
+        }
+      }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "63be8e89c64829b30d561c07"
+        },
+        "product": {
+          "type": "string",
+          "example": "63be8589c5db42580f055781"
         }
       }
     }
