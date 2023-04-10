@@ -58,6 +58,8 @@ exports.deleteAllCartItems= async(req,res)=>{
             data:null,
         });
     }
+
+    
     catch(err){
         res.status(400).json({
             status:"Failed",
