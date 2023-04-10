@@ -14,6 +14,14 @@ exports.createItems = async (req,res)=>{
             error:err.message
         })
     }
+
+
+catch(err){
+    res.status(400).json({
+        status:"Failed",
+        error:err.message
+    })
+}
 }
 
 
