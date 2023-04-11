@@ -14,16 +14,7 @@ exports.createItems = async (req,res)=>{
             error:err.message
         })
     }
-
-
-catch(err){
-    res.status(400).json({
-        status:"Failed",
-        error:err.message
-    })
 }
-}
-
 
 exports.deleteSingleItem = async (req,res)=>{
     try{
@@ -57,6 +48,24 @@ exports.getAllUserCartItems= async(req,res)=>{
     }
 }
 
+
+exports.deleteAllCartItems= async(req,res)=>{
+    try{
+            await CartModel.deleteMany({userId: req.params.userId})
+        res.status(204).json({
+            status:"Success",
+            data:null,
+        });
+    }
+
+    
+    catch(err){
+        res.status(400).json({
+            status:"Failed",
+            error:err.message
+        });
+    }
+}
 
 exports.deleteAllCartItems= async(req,res)=>{
     try{
