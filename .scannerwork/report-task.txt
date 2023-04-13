@@ -2,5 +2,5 @@ projectKey=online-shopping
 serverUrl=http://localhost:9000
 serverVersion=10.0.0.68432
 dashboardUrl=http://localhost:9000/dashboard?id=online-shopping
-ceTaskId=AYdV_lKTxEjQJgZYuwqC
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYdV_lKTxEjQJgZYuwqC
+ceTaskId=AYd7ggr5DogP6MY2MepU
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYd7ggr5DogP6MY2MepU
