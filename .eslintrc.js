@@ -8,9 +8,10 @@ module.exports = {
   overrides: [
   ],
   parserOptions: {
-    ecmaVersion: 'latest'
+    ecmaVersion: "latest"
   },
   rules: {
-    quotes: ["error", "double"]
+    quotes: ["error", "double"],
+    semi: ["error", "always"],
   }
 }
