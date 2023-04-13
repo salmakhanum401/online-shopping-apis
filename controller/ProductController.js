@@ -4,7 +4,7 @@ exports.createProducts = async (req,res) => {
     try{
         const product = await ProductModel.create(req.body);
         res.status(201).json({
-            status:"Success",
+            status:'Success',
             data:product,
         });
     }
