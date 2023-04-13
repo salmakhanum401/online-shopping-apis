@@ -9,7 +9,6 @@ exports.createProducts = async (req,res) => {
         });
     }
     catch(err){
-        console.log(err)
         res.status(400).json({
             status:"Failed",
             error:err.message
@@ -43,7 +42,8 @@ exports.getSingleProduct = async(req,res)=>{
         }
     catch(err){
         res.status(400).json({
-            status:"Failed"
+            status:"Failed",
+            error:err.message
         });
     }
 }
