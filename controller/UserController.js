@@ -7,7 +7,7 @@ exports.createUsers = async (req,res) =>{
         }
         const user = await UserModel.create(req.body);
         res.status(201).json({
-            status:"Success",
+            status:'Success',
             data:user
         });
     }
