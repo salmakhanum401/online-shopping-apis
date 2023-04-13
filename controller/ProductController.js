@@ -47,3 +47,7 @@ exports.getSingleProduct = async(req,res)=>{
         });
     }
 }
+
+function add2Number(){
+
+}
